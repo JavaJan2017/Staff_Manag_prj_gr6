@@ -72,4 +72,46 @@ abstract public class Employee {
 		public int yearsInCompany() {
 			return (2017 - startDate);
 		}
+
+		public int getAge() {
+			return age;
+		}
+
+		public void setAge(int age) {
+			this.age = age;
+		}
+
+		public Contact getContact() {
+			return contact;
+		}
+
+		public void setContact(Contact contact) {
+			this.contact = contact;
+		}
+
+		public boolean isInCompany() {
+			return inCompany;
+		}
+
+		public void setInCompany(boolean inCompany) {
+			this.inCompany = inCompany;
+		}
+
+		public int getStartDate() {
+			return startDate;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public void setGender(GenderType gender) {
+			this.gender = gender;
+		}
+
+		public void setAbsentDays(int absentDays) {
+			this.absentDays = absentDays;
+		}
+		
+		
 }
