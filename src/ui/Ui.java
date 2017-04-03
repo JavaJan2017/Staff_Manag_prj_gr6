@@ -1,4 +1,9 @@
+package ui;
+
 import java.util.ArrayList;
+
+import models.*;
+import utilities.*;
 
 public class Ui {
 

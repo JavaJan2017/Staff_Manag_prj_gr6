@@ -1,3 +1,6 @@
+package models;
+
+import utilities.*;
 
 public class Technician extends Employee {
 	//Class variables

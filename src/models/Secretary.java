@@ -1,4 +1,8 @@
+package models;
+
 import java.util.Date;
+import utilities.*;
+
 
 public class Secretary extends Employee {
 	
