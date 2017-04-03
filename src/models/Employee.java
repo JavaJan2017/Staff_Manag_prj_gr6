@@ -7,11 +7,14 @@ import utilities.*;
 
 abstract public class Employee {
 
-		//Class variables
+		//Class fields
+		private int id;
+		private static int idCounter = 0;
 		private String name;
 		private int age;
 		private Contact contact;
 		private GenderType gender;
+		private Profession profession;
 		private int startDate;
 		private double salary;
 		private double bonus;
@@ -19,13 +22,15 @@ abstract public class Employee {
 		private boolean inCompany;
 		
 		//Constructor
-		public Employee(String name, int age, Contact contact, GenderType gender, int startDate, double salary,
+		public Employee(String name, int age, Contact contact, GenderType gender, Profession profession, int startDate, double salary,
 				double bonus, int absentDays, boolean inCompany) {
-			//super(name, age, contact, gender, startDate, salary, bonus, absentDays, inCompany);
+
+			this.id = ++idCounter;
 			this.name = name;
 			this.age = age;
 			this.contact = contact;
 			this.gender = gender;
+			this.profession = profession;
 			this.startDate = startDate;
 			this.salary = salary;
 			this.bonus = bonus;
@@ -44,6 +49,14 @@ abstract public class Employee {
 			inCompany = false;
 		}
 		
+		public int getId(){
+			return id;
+		}
+		
+		public void setId(int id){
+			this.id = id;
+		}
+		
 		public String getName() {
 			return name;
 		}
@@ -52,7 +65,11 @@ abstract public class Employee {
 		public GenderType getGender() {
 			return gender;
 		}
-
+		
+		public Profession getProfession() {
+			return profession;
+		}
+		
 		public double getSalary() {
 			return salary;
 		}

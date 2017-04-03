@@ -6,12 +6,13 @@ import utilities.*;
 
 public class Secretary extends Employee {
 	
-	//Class variable
+	//Class fields
 	private int nTelephoneCalls;
 	
-	public Secretary(String name, int age, Contact contact, GenderType gender, int startDate, double salary,
+	public Secretary(String name, int age, Contact contact, GenderType gender, Profession profession, int startDate, double salary,
 			double bonus, int absentDays, boolean inCompany, int calls) {
-		super(name, age, contact, gender, startDate, salary, bonus, absentDays, inCompany);
+		
+		super(name, age, contact, gender, profession, startDate, salary, bonus, absentDays, inCompany);
 		nTelephoneCalls = calls;
 	}
 	//Class methods

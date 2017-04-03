@@ -3,14 +3,16 @@ package models;
 import utilities.*;
 
 public class Technician extends Employee {
-	//Class variables
+	
+	//Class fields
 	private int nServersFixed;
 	private int nServerCrashes;
 	
 	//Class constructor
-	public Technician(String name, int age, Contact contact, GenderType gender, int startDate, double salary,
+	public Technician(String name, int age, Contact contact, GenderType gender, Profession profession, int startDate, double salary,
 			double bonus, int absentDays, boolean inCompany, int serversFixed, int nServerCrashes) {
-		super(name, age, contact, gender, startDate, salary, bonus, absentDays, inCompany);
+		
+		super(name, age, contact, gender, profession, startDate, salary, bonus, absentDays, inCompany);
 		this.nServersFixed += serversFixed;
 		this.nServerCrashes += nServerCrashes;
 	}

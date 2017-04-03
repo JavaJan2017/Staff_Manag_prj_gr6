@@ -4,14 +4,15 @@ import utilities.*;
 
 public class Manager extends Employee {
 
-	//Class variablse
+	//Class fields
 	private int amntProduction;
 	private int complaints;
 	
 	//Constructor
-	public Manager(String name, int age, Contact contact, GenderType gender, int startDate, double salary,
+	public Manager(String name, int age, Contact contact, GenderType gender, Profession profession, int startDate, double salary,
 			double bonus, int absentDays, boolean inCompany, int amntProduction, int complaints) {
-		super(name, age, contact, gender, startDate, salary, bonus, absentDays, inCompany);
+		
+		super(name, age, contact, gender, profession, startDate, salary, bonus, absentDays, inCompany);
 		this.amntProduction = amntProduction;
 		this.complaints = complaints;
 	}
