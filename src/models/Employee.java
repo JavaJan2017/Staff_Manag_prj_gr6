@@ -129,6 +129,10 @@ abstract public class Employee {
 		public void setGender(GenderType gender) {
 			this.gender = gender;
 		}
+		
+		public void setProfession(Profession profession) {
+			this.profession = profession;
+		}
 
 		public void setAbsentDays(int absentDays) {
 			this.absentDays = absentDays;
