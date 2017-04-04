@@ -19,13 +19,16 @@ public class Programmer extends Employee {
 
 		//Class methods
 		@Override
-		public void calculateBonus() {
-			double bonus = (nPrograms * 15) - (nTotalBugs * 7) - (absentDays * 5);
-			setBonus(bonus);
+		public double calculateBonus() {
+			double bonus = getBonus() + (nPrograms * 15) - (nTotalBugs * 7) - (absentDays * 5);
+			return bonus;
 		}
 		
 		public void writeProgram() {
 			nPrograms += 1;
+		}
+		public void makeBugs() {
+			nTotalBugs+= 1;
 		}
 
 		public int getnPrograms() {
@@ -36,5 +39,8 @@ public class Programmer extends Employee {
 			return nTotalBugs;
 		}
 
+		public void printInfo() {
+			System.out.println("Number of programs: " + nPrograms + " Total Bugs: " + nTotalBugs + " Absent days: " + absentDays + " Bonus: €" + calculateBonus());
+		}
 		
 }

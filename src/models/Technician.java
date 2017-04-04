@@ -26,9 +26,12 @@ public class Technician extends Employee {
 		nServerCrashes += 1;
 	}
 	
-	public void calculateBonus() {
-		double bonus = (nServersFixed * 50) - (nServerCrashes * 3) - (absentDays * 5);
-		setBonus(bonus);
+	public double calculateBonus() {
+		double bonus = getBonus() + (nServersFixed * 50) - (nServerCrashes * 3) - (absentDays * 5);
+		return bonus;
+	}
+	public void printInfo() {
+		System.out.println("Number of Server Fixed is: " + nServersFixed + " Number of serves Crashes: " + nServerCrashes + " Absent days: " + absentDays + " Bonus: €" + calculateBonus());
 	}
 
 	public int getnServersFixed() {

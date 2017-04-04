@@ -39,7 +39,7 @@ abstract public class Employee {
 		}
 		
 		//Class methods
-		abstract public void calculateBonus();
+		abstract public double calculateBonus();
 		
 				
 		public void callInAbsence(int days) {

@@ -20,13 +20,15 @@ public class Manager extends Employee {
 	//Class methods
 	
 	@Override
-	public void calculateBonus() {
-		double bonus = (amntProduction * 28) - (complaints * 17) - (absentDays * 5);
-		setBonus(bonus);
+	public double calculateBonus() {
+		double bonus = getBonus() + (amntProduction * 3.7) - (complaints * 17) - (absentDays * 5);
+		return bonus;
 
 	}
 	
-	
+	public void printInfo() {
+		System.out.println("Production: " + amntProduction + "% Complaints: " + complaints + " Absent days: " + absentDays + " Bonus: €" + calculateBonus());
+	}
 	
 	public void increaseProduction() {
 		amntProduction += 10;

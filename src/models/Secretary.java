@@ -16,9 +16,12 @@ public class Secretary extends Employee {
 		nTelephoneCalls = calls;
 	}
 	//Class methods
-	public void calculateBonus() {
-		double bonus = (nTelephoneCalls * 10) - (absentDays * 5);
-		setBonus(bonus);
+	public double calculateBonus() {
+		double bonus = getBonus() + (nTelephoneCalls * 10) - (absentDays * 5);
+		return bonus;
+	}
+	public void printInfo() {
+		System.out.println("Secretary number telephon calls: " + nTelephoneCalls + " Absent days: " + absentDays + " Bonus: €" + calculateBonus());
 	}
 	
 	public void makeTelephoneCall(int n) {

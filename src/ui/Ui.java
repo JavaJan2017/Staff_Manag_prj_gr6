@@ -10,11 +10,7 @@ import utilities.*;
 
 public class Ui {
 	
- 	//Create an ArrayList of existing employees
-	public static ArrayList<Employee> empList = new ArrayList<>();
-	
-	
-	
+ 		
 	//toString() method for GenderType
 	public static String toString(GenderType gt) {
 		return (gt == GenderType.MALE) ? "MALE  " : "FEMALE";
@@ -77,58 +73,14 @@ public class Ui {
 						+ " " +fixLengthString( e.getBonus(),6)  + "  " + fixLengthString(e.getStartDate(), 5));		
 	}
 	
-	public static void viewEmployee(Employee e) {
-		printHeader();
-		printEmployee(e);
-		}
+
 		
 	public static void printAllEmployees() {
 		printHeader();
-		for(Employee e : empList) {
+		for(Employee e : Main.empList) {
 			printEmployee(e);
 		}
 		System.out.println("");
-	}
-
-	
-	
-	// **********************************************
-	// 	  ADDING, UPDATING AND REMOVING EMPLOYEE
-	//***********************************************
-		
-	
-	public static void hireEmployee(Employee e) {
-		empList.add(e);
-	}
-	
-	public static void fireEmployee(Employee e) {
-		empList.remove(e);
-		e.setInCompany(false);
-	}
-	
-	public static void updateEmployee(Employee e, String name, int age, Contact contact, GenderType gender, Profession profession, double salary,
-			double bonus, int absentDays) {
-		
-		e.setName(name);
-		e.setAge(age);
-		//e.contact = contact;
-		e.setGender(gender);
-		e.setProfession(profession);
-		e.setSalary(salary);
-		e.setBonus(bonus);
-		e.setAbsentDays(absentDays);
-		
-	}
-	
-	public static void updateContact(Contact c, String adr, String email, String phone) {
-		c.setAdress(adr);
-		c.setEmail(email);
-		c.setPhone(phone);
-	}
-	
-	public static Contact generateContact(String adr, String email, String phone) {
-		Contact c = new Contact(adr, email, phone);
-		return c;
 	}
 	
 	
@@ -136,6 +88,12 @@ public class Ui {
 	// **********************************************
 	// 			        USER INPUT
 	//***********************************************	
+	
+	public static Contact generateContact(String adr, String email, String phone) {
+		Contact c = new Contact(adr, email, phone);
+		return c;
+	}
+	
 	
 	public static String askProfession() {
 		
@@ -192,7 +150,7 @@ public class Ui {
 		    	GenderType gndr = askGender();
 		    	
 		    	Employee e = new Secretary(name, age, generateContact(adr, email, phone), gndr, Profession.SECRETARY, 2017, 25000, 1000, 1, true, 100);
-		    	hireEmployee(e);
+		    	StaffManagement.hireEmployee(e);
 		    	break;
 		    }
 		    case "Technician" : {
@@ -205,7 +163,7 @@ public class Ui {
 		    	GenderType gndr = askGender();
 		    	
 		    	Employee e = new Technician(name, age, generateContact(adr, email, phone), gndr, Profession.TECHNICIAN, 2017, 25000, 1000, 1, true, 100, 3);
-		    	hireEmployee(e);
+		    	StaffManagement.hireEmployee(e);
 		    	break;
 		    }
 		    case "Programmer" : {
@@ -218,7 +176,7 @@ public class Ui {
 		    	GenderType gndr = askGender();
 		    	
 		    	Employee e = new Programmer(name, age, generateContact(adr, email, phone), gndr, Profession.PROGRAMMER, 2017, 25000, 1000, 1, true, 100, 3);
-		    	hireEmployee(e);
+		    	StaffManagement.hireEmployee(e);
 		    	break;
 		    }
 		    case "Manager" : {
@@ -231,78 +189,13 @@ public class Ui {
 		    	GenderType gndr = askGender();
 		    	
 		    	Employee e = new Manager(name, age, generateContact(adr, email, phone), gndr, Profession.MANAGER, 2017, 25000, 1000, 1, true, 100, 3);
-		    	hireEmployee(e);
+		    	StaffManagement.hireEmployee(e);
 		    	break;
 		    }
 		    default :
 		    	break;
 		    }
 	}
-	
-
-
-	//Testing
-	
-		
-//		System.out.println("Secretary number of calls: " + s1.getNTelephoneCalls());
-//		System.out.println("absent days: " + s1.getAbsentDays());
-//		s1.calculateBonus();
-//		System.out.println("Secretary's bonus: " + s1.getBonus());
-//
-//		s1.makeTelephoneCall(45);
-//		s1.callInAbsence(2);
-//		System.out.println("We make some telephone calls and call in days of absence");
-//
-//		System.out.println("Secretary number of calls: " + s1.getNTelephoneCalls());
-//		System.out.println("absent days: " + s1.getAbsentDays());
-//		s1.calculateBonus();
-//		System.out.println("Secretary's bonus: " + s1.getBonus());
-//
-//		System.out.println(viewEmployee(t1));
-//		System.out.println("Technician number of servers fixed: " + t1.getnServersFixed());
-//		t1.calculateBonus();
-//		System.out.println("Technician'sbonus: " + t1.getBonus());
-//
-//		t1.fixServer();
-//		System.out.println("Technician We fix one server");
-//		t1.fixServer();
-//		System.out.println("Technician We fix one server");
-//
-//		System.out.println("serversFixed: " + t1.getnServersFixed());
-//		t1.calculateBonus();
-//		System.out.println("Technician's bonus: " + t1.getBonus());
-//
-//		System.out.println(viewEmployee(p1));
-//		System.out.println("Programmer number of programs: " + p1.getnPrograms());
-//		p1.calculateBonus();
-//		System.out.println("Programmer's bonus: " + p1.getBonus());
-//
-//		System.out.println("We write some programs");
-//		p1.writeProgram();
-//		p1.writeProgram();
-//		p1.writeProgram();
-//		System.out.println("Programmer number of programs: " + p1.getnPrograms());
-//		p1.calculateBonus();
-//		System.out.println("Programmer's bonus: " + p1.getBonus());
-//		
-//		System.out.println(viewEmployee(m1));
-//		System.out.println("Manager amnt of production: " + m1.getAmntProduction());
-//		System.out.println("Manager number of complaints: " + m1.getComplaints());
-//		m1.calculateBonus();
-//		System.out.println("Manager's bonus: " + m1.getBonus());
-//		System.out.println("We increase production a little");
-//		m1.increaseProduction();
-//		System.out.println("Manager receives some complaints");
-//		m1.receiveComplaints();
-//		m1.receiveComplaints();
-//		m1.receiveComplaints();
-//		m1.receiveComplaints();
-//		System.out.println("Manager amnt of production: " + m1.getAmntProduction());
-//		System.out.println("Manager number of complaints: " + m1.getComplaints());
-//		m1.calculateBonus();
-//		System.out.println("Manager's bonus: " + m1.getBonus());
-
-
 	
 	
 }

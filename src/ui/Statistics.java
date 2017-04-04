@@ -1,7 +1,7 @@
 package ui;
 
 import models.Employee;
-import static ui.Ui.empList;
+import static ui.Main.empList;
 import utilities.GenderType;
 
 public class Statistics {
@@ -176,6 +176,8 @@ public class Statistics {
 
 		System.out.println("Ratio F to M in Profession Secretary is: "+ratioFtoMSecretary);
 		System.out.println("Ratio F to M in Profession Technician is: "+ratioFtoMTechnician);
+		System.out.println("Ratio F to M in Profession Programmer is: "+ratioFtoMProgrammer);
+		System.out.println("Ratio F to M in Profession Manager is: "+ratioFtoMManager);
 
 	}
 	
