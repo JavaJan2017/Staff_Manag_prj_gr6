@@ -43,25 +43,24 @@ abstract public class Employee {
 		//Class methods
 		abstract public double calculateBonus();
 		
-		public  void calculateSalary() {
+		public  double calculateSalary() {
 			double newSalary = 0;
 			for(Employee e : empList) {
 				if((e.yearsInCompany() > 2 )) {
 					newSalary = e.getSalary() * 1.10 ;
-					e.setSalary(newSalary);
-				}
+					}
 				else if ((e.yearsInCompany() > 5)) {
 					newSalary = e.getSalary() * 1.25;
-					e.setSalary(newSalary);
 				}
 				else if ((e.yearsInCompany() > 10)) {
 					newSalary = e.getSalary() * 1.35 ;
-					e.setSalary(newSalary);
 				}
-				else
+				else {
 					newSalary = e.getSalary();
-				e.setSalary(newSalary);
+				}
 			}
+			return newSalary;
+			
 		}
 		
 				
@@ -121,6 +120,7 @@ abstract public class Employee {
 		public int getAge() {
 			return age;
 		}
+		
 
 		public void setAge(int age) {
 			this.age = age;
@@ -162,5 +162,7 @@ abstract public class Employee {
 			this.absentDays = absentDays;
 		}
 		
-		
+		public void setStartDate(int startDate) {
+			this.startDate = startDate;
+		}
 }

@@ -27,7 +27,7 @@ public class Manager extends Employee {
 	}
 	
 	public void printInfo() {
-		System.out.println("Production: " + amntProduction + "% Complaints: " + complaints + " Absent days: " + absentDays + " Bonus: €" + calculateBonus());
+		System.out.println("Production: " + amntProduction + "%  Complaints: " + complaints + "  Absent days: " + absentDays + "  Bonus: €" + calculateBonus());
 	}
 	
 	public void increaseProduction() {

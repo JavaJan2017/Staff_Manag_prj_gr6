@@ -40,7 +40,7 @@ public class Programmer extends Employee {
 		}
 
 		public void printInfo() {
-			System.out.println("Number of programs: " + nPrograms + " Total Bugs: " + nTotalBugs + " Absent days: " + absentDays + " Bonus: €" + calculateBonus());
+			System.out.println("Number of programs: " + nPrograms + "  Total Bugs: " + nTotalBugs + "  Absent days: " + absentDays + "  Bonus: €" + calculateBonus());
 		}
 		
 }

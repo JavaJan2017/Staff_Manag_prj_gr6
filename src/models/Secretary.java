@@ -21,7 +21,7 @@ public class Secretary extends Employee {
 		return bonus;
 	}
 	public void printInfo() {
-		System.out.println("Secretary number telephon calls: " + nTelephoneCalls + " Absent days: " + absentDays + " Bonus: €" + calculateBonus());
+		System.out.println("Number of telephone calls: " + nTelephoneCalls + "  Absent days: " + absentDays + "  Bonus: €" + calculateBonus());
 	}
 	
 	public void makeTelephoneCall(int n) {

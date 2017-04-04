@@ -31,7 +31,7 @@ public class Technician extends Employee {
 		return bonus;
 	}
 	public void printInfo() {
-		System.out.println("Number of Server Fixed is: " + nServersFixed + " Number of serves Crashes: " + nServerCrashes + " Absent days: " + absentDays + " Bonus: €" + calculateBonus());
+		System.out.println("Number of servers fixed is: " + nServersFixed + "  Number of server crashes: " + nServerCrashes + "  Absent days: " + absentDays + " Bonus: €" + calculateBonus());
 	}
 
 	public int getnServersFixed() {

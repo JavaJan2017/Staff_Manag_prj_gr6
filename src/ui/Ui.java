@@ -1,5 +1,7 @@
 package ui;
 
+import static ui.Ui.printAllEmployees;
+
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -62,15 +64,16 @@ public class Ui {
 	}
 	
 	public static void printHeader() {
-		System.out.println("--------------------------------------------------------------------------------------");
-		System.out.println("Employee ID  Employee name        Age   Gender  Profession   Salary   Bonus   Startdate");
-		System.out.println("--------------------------------------------------------------------------------------");
+		System.out.println("-------------------------------------------------------------------------------------------");
+		System.out.println("ID   Name         Age   Gender  Profession   Adress        e-mail          Phone  Startyear");
+		System.out.println("-------------------------------------------------------------------------------------------");
 	}
 	
 	public static void printEmployee(Employee e) {
-	System.out.println(fixLengthString(e.getId(), 12) +  " " + fixLengthString(e.getName(), 18) + "   " + fixLengthString(e.getAge(), 3) 
-						+ "   " +toString(e.getGender()) + "  " +toString( e.getProfession()) + "   " + fixLengthString(e.getSalary(), 8) 
-						+ " " +fixLengthString( e.getBonus(),6)  + "  " + fixLengthString(e.getStartDate(), 5));		
+	System.out.println(fixLengthString(e.getId(), 4) +  " " + fixLengthString(e.getName(), 10) + "   " + fixLengthString(e.getAge(), 3) 
+						+ "   " +toString(e.getGender()) + "  " +toString( e.getProfession()) + "   " + fixLengthString(e.getContact().getAdress(), 13) 
+						+ " " + fixLengthString( e.getContact().getEmail(),15)  + " " + fixLengthString(e.getContact().getPhone(), 5)
+						+ "  " + fixLengthString(e.getStartDate(), 5));		
 	}
 	
 
@@ -96,7 +99,8 @@ public class Ui {
 	
 	public static String askAction() {
 		
-		final String[] action = { "Add Employee", "Update Employee", "Remove Employee", "Show Employee", "Calculate Salary and Bonus", "Get Statistics" };
+		final String[] action = { "Add Employee", "Update Employee", "Remove Employee", "Show Employee", 
+									"Calculate Salary and Bonus", "Show Salary Statistics", "Show Gender Statistics", "Extra Data" };
 		JFrame frame = new JFrame("Staff Management v 1.2");
 		    String selectedAction = (String) JOptionPane.showInputDialog(frame, 
 		        "Select Action",
@@ -118,6 +122,7 @@ public class Ui {
 
 		case  "Add Employee" : {
 			enterNewEmployees();
+			printAllEmployees();
 			break;
 		}
 		case "Update Employee" : {
@@ -125,14 +130,23 @@ public class Ui {
 			int id = Integer.parseInt(stringID);
 			Employee e = Main.findEmployeeByID(id);
 			String name = JOptionPane.showInputDialog("Enter new name");
-			StaffManagement.updateEmployee(e, name);
+			String adr = JOptionPane.showInputDialog("Enter new adress");
+	    	String email = JOptionPane.showInputDialog("Enter new e-mail");
+	    	String phone = JOptionPane.showInputDialog("Enter new phone");
+	    	GenderType gndr = askGender();
+	    	String stringStartYear = JOptionPane.showInputDialog("Enter new start year");
+	    	int startYear = Integer.parseInt(stringStartYear);
+			StaffManagement.updateEmployee(e, name, generateContact(adr, email, phone), gndr, startYear);
+			printAllEmployees();
 			break;
 
 		}
 		case "Remove Employee" : {
 			String stringID = JOptionPane.showInputDialog("Enter Employee ID");
 			int id = Integer.parseInt(stringID);
-			removeEmployee(id);
+			Employee e = Main.findEmployeeByID(id);
+			StaffManagement.fireEmployee(e);
+			printAllEmployees();
 			break;
 		}
 		case "Show Employee" : {
@@ -147,15 +161,38 @@ public class Ui {
 			String stringID = JOptionPane.showInputDialog("Enter Employee ID");
 			int id = Integer.parseInt(stringID);
 			Employee e = Main.findEmployeeByID(id);
-			e.calculateSalary();
-			e.calculateBonus();
 			printHeader();
 			printEmployee(e);
+			System.out.println("Salary: €" + (int)e.calculateSalary());
+			System.out.println("Bonus: €" + (int)e.calculateBonus());
 			break;
 			
 		}
+		case "Show Salary Statistics" : {
+			System.out.println("Lowest Salary is: €" + Statistics.calcMinSalary());
+			System.out.println("Highest Salary is: €" + Statistics.calcMaxSalary());
+			System.out.println("Average Overall Salary is: €" + Statistics.calcAvgSalary());
+			Statistics.calcAvgSalaryProfessions();
+			break;
+		}
+		case "Show Gender Statistics" : {
+			System.out.println("The percentage of women in the company is: " + (int)Statistics.calcFtoM() + "%");
+			Statistics.calculateFtoMProfession();
+			break;
+		}
+
+		case "Extra Data" : {
+			Main.extraData();
+			break;
+		}
+
+		default :
+			System.out.println("Error in Ui.getUserInput()");
+			System.exit(0);
+			break;
 
 		}
+		//System.exit(0);
 	}
 
 	public static String askProfession() {

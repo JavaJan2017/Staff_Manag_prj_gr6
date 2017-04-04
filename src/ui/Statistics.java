@@ -8,6 +8,28 @@ public class Statistics {
 	
 	static double[] avgSalaryProfession = new double[4];
 
+	//Calculate Lowest Salary
+	public static double calcMinSalary() {
+		double min = empList.get(0).getSalary();
+		
+		for(Employee e : empList) {
+			if(e.getSalary() < min)
+				min = e.getSalary();
+		}
+		return min;
+	}
+
+	//Calculate Highest Salary
+	public static double calcMaxSalary() {
+double max = empList.get(0).getSalary();
+		
+		for(Employee e : empList) {
+			if(e.getSalary() > max)
+				max = e.getSalary();
+		}
+		return max;
+	}
+	
 	//Calculate Average salary
 	public static double calcAvgSalary() {
 		
@@ -124,82 +146,53 @@ public class Statistics {
 				if (e.getGender().equals(GenderType.MALE)) {
 					malesSecretary++;
 				}
-				else
-				{
+				else{
 					femalesSecretary++;
 				}
 				ratioFtoMSecretary = ((double)femalesSecretary / (malesSecretary + femalesSecretary)) * 100;
-
-
-
 				break;
 
 			case TECHNICIAN: 
 				if (e.getGender().equals(GenderType.MALE)) {
 					malesTechnician++;
 				}
-				else
-				{
+				else {
 					femalesTechnician++;
 				}
-				ratioFtoMTechnician = ((double)femalesTechnician / (malesTechnician + femalesTechnician)) * 100;	
-
+				ratioFtoMTechnician = ((double)femalesTechnician / (malesTechnician + femalesTechnician)) * 100;
 				break;
 
 			case PROGRAMMER: 
 				if (e.getGender().equals(GenderType.MALE)) {
 					malesProgrammer++;
 				}
-				else
-				{
+				else {
 					femalesProgrammer++;
 				}
 				ratioFtoMProgrammer = ((double)femalesProgrammer / (malesProgrammer + femalesProgrammer)) * 100;
-
 				break;
 
 			case MANAGER: 
 				if (e.getGender().equals(GenderType.MALE)) {
 					malesManager++;
 				}
-				else
-				{
+				else {
 					femalesManager++;
 				}
 				ratioFtoMManager = ((double)femalesManager / (malesManager + femalesManager)) * 100;
-
 				break;
 			default:
 				break;			
 			}			
 		}
 
-		System.out.println("Ratio F to M in Profession Secretary is: "+ratioFtoMSecretary);
-		System.out.println("Ratio F to M in Profession Technician is: "+ratioFtoMTechnician);
-		System.out.println("Ratio F to M in Profession Programmer is: "+ratioFtoMProgrammer);
-		System.out.println("Ratio F to M in Profession Manager is: "+ratioFtoMManager);
+		System.out.println("The percentage of women among Secretaries is: " + (int)ratioFtoMSecretary + "%");
+		System.out.println("The percentage of women among Technicians is: " + (int)ratioFtoMTechnician + "%");
+		System.out.println("The percentage of women among Programmers is: " + (int)ratioFtoMProgrammer + "%");
+		System.out.println("The percentage of women among Managers is: " + (int)ratioFtoMManager +"%");
 
 	}
 	
-	public static double calcMinSalary() {
-		double min = empList.get(0).getSalary();
-		
-		for(Employee e : empList) {
-			if(e.getSalary() < min)
-				min = e.getSalary();
-		}
-		return min;
-	}
-	
-	public static double calcMaxSalary() {
-double max = empList.get(0).getSalary();
-		
-		for(Employee e : empList) {
-			if(e.getSalary() > max)
-				max = e.getSalary();
-		}
-		return max;
-	}
 	
 	
 	public static void calculateAllBonus() {

@@ -27,8 +27,32 @@ public class StaffManagement {
 	}
 	
 	public static void fireEmployee(Employee e) {
-		Main.empList.remove(e);
-		e.setInCompany(false);
+		boolean exists = false;
+
+		if(e == null) {
+			System.out.println("Employee does not exist");
+		}
+
+		else {
+
+			for(Employee emp : Main.empList) {
+				if(e.equals(emp)) {
+					exists = true;
+					System.out.println("exists = true");
+					break;
+				}
+				else {
+					exists = false;
+					System.out.println("exists = false");
+				}
+			}
+			if (exists) {
+				Main.empList.remove(e);
+				e.setInCompany(false);
+			}
+			else
+				System.out.println("Employee does not exist");
+		}
 	}
 	
 //	public static void updateEmployee(Employee e, String name, int age, Contact contact, GenderType gender, Profession profession, double salary,
@@ -45,7 +69,10 @@ public class StaffManagement {
 //		
 //	}
 	
-	public static void updateEmployee(Employee e, String name) {
+	public static void updateEmployee(Employee e, String name, Contact contact, GenderType gender, int startYear) {
 		e.setName(name);
+		e.setContact(contact);
+		e.setGender(gender);
+		e.setStartDate(startYear);
 	}
 }
