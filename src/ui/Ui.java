@@ -2,12 +2,18 @@ package ui;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import models.*;
 import utilities.*;
 
 public class Ui {
+	
+ 	//Create an ArrayList of existing employees
+	public static ArrayList<Employee> empList = new ArrayList<>();
+	
+	
 	
 	//toString() method for GenderType
 	public static String toString(GenderType gt) {
@@ -61,12 +67,12 @@ public class Ui {
 	
 	public static void printHeader() {
 		System.out.println("--------------------------------------------------------------------------------------");
-		System.out.println("Employee ID  Employee name        Age  Gender  Profession   Salary   Bonus   Startdate");
+		System.out.println("Employee ID  Employee name        Age   Gender  Profession   Salary   Bonus   Startdate");
 		System.out.println("--------------------------------------------------------------------------------------");
 	}
 	
 	public static void printEmployee(Employee e) {
-	System.out.println(fixLengthString(e.getId(), 12) +  " " + fixLengthString(e.getName(), 18) + "   " + fixLengthString(e.getAge(), 2) 
+	System.out.println(fixLengthString(e.getId(), 12) +  " " + fixLengthString(e.getName(), 18) + "   " + fixLengthString(e.getAge(), 3) 
 						+ "   " +toString(e.getGender()) + "  " +toString( e.getProfession()) + "   " + fixLengthString(e.getSalary(), 8) 
 						+ " " +fixLengthString( e.getBonus(),6)  + "  " + fixLengthString(e.getStartDate(), 5));		
 	}
@@ -83,123 +89,11 @@ public class Ui {
 		}
 		System.out.println("");
 	}
+
 	
 	
 	// **********************************************
-	// 			        STATISTICS
-	//***********************************************
-			
-	
-	//Calculate Average salary
-	public static double calcAvgSalary() {
-		double averageSalary = 0;
-		double totalSalary = 0;
-
-		for(Employee e : empList){
-			totalSalary += e.getSalary() + e.getBonus();
-
-			averageSalary = totalSalary/empList.size();
-
-		}
-		return averageSalary;
-	}
-	
-	//Calculate Average Salary by Profession
-	public static void calcAvgSalaryProfessions() {
-		double totalSalarySecretary = 0;
-		double avgSalarySecretary = 0;
-		int nSecretaries = 0;
-		
-		double totalSalaryTechnician = 0;
-		double avgSalaryTechnician = 0;
-		int nTechnicians = 0;
-		
-		double avgSalaryProgrammer = 0;
-		double totalSalaryProgrammer = 0;
-		int nProgrammers = 0;
-		
-		double avgSalaryManager = 0;
-		double totalSalaryManager = 0;
-		int nManagers = 0;
-		
-		for(Employee e : empList) {
-			
-			switch (e.getProfession()) {
-			case SECRETARY: 
-				nSecretaries++;
-				totalSalarySecretary += e.getSalary() + e.getBonus();
-				avgSalarySecretary = totalSalarySecretary / nSecretaries;				
-				break;
-				
-			case TECHNICIAN: calcAvgSalary();
-				nTechnicians++;
-				totalSalaryTechnician += e.getSalary() + e.getBonus();
-				avgSalaryTechnician = totalSalaryTechnician / nTechnicians;				
-				break;
-				
-			case PROGRAMMER: calcAvgSalary();
-				nProgrammers++;
-				totalSalaryProgrammer += e.getSalary() + e.getBonus();
-				avgSalaryProgrammer = totalSalaryProgrammer / nProgrammers;
-				break;
-				
-			case MANAGER: calcAvgSalary();
-				nManagers++;
-				totalSalaryManager += e.getSalary() + e.getBonus();
-				avgSalaryManager = totalSalaryManager / nManagers;
-				break;
-			default:
-				break;			
-			}			
-		}
-		
-		System.out.println("Average salary Secr: " + avgSalarySecretary);
-		System.out.println("Average Salary Tech: " + avgSalaryTechnician);
-		System.out.println("Average salary Prgr: " + avgSalaryProgrammer);
-		System.out.println("Average salary Mngr: " + avgSalaryManager);		
-	}
-		
-		//Calculate Female-to-Male ratio
-	public static double calcFtoM() {
-		int males = 0;
-		int females = 0;
-		double ratioFtoM = 0;
-
-		for(Employee e : empList){
-			if (e.getGender().equals(GenderType.MALE)) {
-				males++;
-			}
-			else
-			{
-				females++;
-			}
-			ratioFtoM = ((double)females / (males + females)) * 100;
-		}
-		return ratioFtoM;
-	}
-	
-	public static double calcMinSalary() {
-		double min = empList.get(0).getSalary();
-		
-		for(Employee e : empList) {
-			if(e.getSalary() < min)
-				min = e.getSalary();
-		}
-		return min;
-	}
-	
-	public static double calcMaxSalary() {
-		double max = empList.get(0).getSalary();
-		
-		for(Employee e : empList) {
-			if(e.getSalary() > max)
-				max = e.getSalary();
-		}
-		return max;
-	}
-	
-	// **********************************************
-	// 	ADDING, UPDATING AND REMOVING EMPLOYEE
+	// 	  ADDING, UPDATING AND REMOVING EMPLOYEE
 	//***********************************************
 		
 	
@@ -226,73 +120,130 @@ public class Ui {
 		
 	}
 	
-	public void updateConact(Contact c, String adr, String email, String phone) {
+	public static void updateContact(Contact c, String adr, String email, String phone) {
 		c.setAdress(adr);
 		c.setEmail(email);
 		c.setPhone(phone);
 	}
 	
-		
-	
-	// **********************************************
-	// 			INITIATING AND TESTING DATA
-	//***********************************************
-			
-		
-	//Create our ArrayList of employees
-	static ArrayList<Employee> empList = new ArrayList<>();
-	
-	//Initiate employees
-	public static void initiateArrayList() {
-		
-		String input = JOptionPane.showInputDialog("Enter name of Employee");
-		
-		Contact contactS1 = new Contact("Main road 1", "siri@a.com", "074938832");
-		Contact contactS2 = new Contact("Main road 2", "susan@a.com", "074938832");
-		Contact contactT1 = new Contact("Park Ave 1", "tom@a.com", "072934532");
-		Contact contactP1 = new Contact("44th Street", "peter@a.com", "07439499");
-		Contact contactP2 = new Contact("55th Street", "patricia@a.com", "07439576");
-		Contact contactM1 = new Contact("Wall Str.1", "michael@a.com", "0784324581");
-
-		
-		Secretary s1 = new Secretary(input, 25, contactS1, GenderType.FEMALE, Profession.SECRETARY, 2016, 25000, 1000, 1, true, 100);
-		Secretary s2 = new Secretary("Susan", 25, contactS2, GenderType.MALE, Profession.SECRETARY, 2016, 25870, 3200, 1, true, 100);
-		Technician t1 = new Technician("Tom", 25, contactT1, GenderType.MALE, Profession.TECHNICIAN, 2013, 50000, 3000, 1, true, 50, 10);
-		Programmer p1 = new Programmer("Peter", 30, contactP1, GenderType.MALE, Profession.PROGRAMMER, 2011, 10000, 5000, 1, true, 500, 77);
-		Programmer p2 = new Programmer("Patricia", 30, contactP2, GenderType.FEMALE, Profession.PROGRAMMER, 2011, 20000, 5, 1, true, 500, 77);		
-		Manager m1 = new Manager("Michael", 52, contactM1, GenderType.MALE, Profession.MANAGER, 2000, 65000, 7000, 10, true, 650, 50);
-
-		
-		//empList.add(s1);
-		hireEmployee(s1);
-		hireEmployee(s2);
-		hireEmployee(t1);
-		hireEmployee(p1);
-		hireEmployee(p2);
-		hireEmployee(m1);
-		
-		for(int i = 0; i < 2; i++) {
-			String name = JOptionPane.showInputDialog("Enter name of Employee");
-			String stringAge = JOptionPane.showInputDialog("Enter age of Employee");
-			int age = Integer.parseInt(stringAge);
-			hireEmployee(new Secretary(name, age, contactS1, GenderType.FEMALE, Profession.SECRETARY, 2016, 25000, 1000, 1, true, 100));
-		}
-
+	public static Contact generateContact(String adr, String email, String phone) {
+		Contact c = new Contact(adr, email, phone);
+		return c;
 	}
 	
-	//Testing
-	public static void testData() {
-		
-		initiateArrayList();
 	
-		printAllEmployees();
+	
+	// **********************************************
+	// 			        USER INPUT
+	//***********************************************	
+	
+	public static String askProfession() {
 		
-		System.out.println("Ratio of Female to Male is " + calcFtoM());
-		System.out.println("Avg min salary: " + calcMinSalary());
-		System.out.println("Avg max salary: " + calcMaxSalary());
+		final String[] professions = { "Secretary", "Technician", "Programmer", "Manager" };
+		JFrame frame = new JFrame("Staff Management v 1.2");
+		    String selectedProfession = (String) JOptionPane.showInputDialog(frame, 
+		        "Select Profession",
+		        "Profession type",
+		        JOptionPane.QUESTION_MESSAGE, 
+		        null, 
+		        professions, 
+		        professions[0]);
+
+		    // selectedProfession will be null if the user clicks Cancel
+		    return selectedProfession;
 		
-		System.out.println("Avg salary by profession: ");
-		calcAvgSalaryProfessions();
+	}
+	
+	public static GenderType askGender() {
+		
+		final String[] gender = { "Male", "Female"};
+		JFrame frame = new JFrame("Staff Management v 1.2");
+		    String selectedGender = (String) JOptionPane.showInputDialog(frame, 
+		        "Select Gender",
+		        "Gender type",
+		        JOptionPane.QUESTION_MESSAGE, 
+		        null, 
+		        gender, 
+		        gender[0]);
+		    
+		    switch (selectedGender) {
+		    case "Male" :  	return GenderType.MALE;
+		    case "Female" : return GenderType.FEMALE;
+		    default : return null;
+		    }
+		    // selectedGender will be null if the user clicks Cancel
+		
+	}
+	
+	
+	//Ask for user input to hire new Employees
+	public static void enterNewEmployees() {
+		
+			String selectedProfession = askProfession();
+		 
+		    switch (selectedProfession) {
+		    case "Secretary" : {
+		    	String name = JOptionPane.showInputDialog("Enter name");
+		    	String stringAge = JOptionPane.showInputDialog("Enter age");
+		    	int age = Integer.parseInt(stringAge);
+		    	String adr = JOptionPane.showInputDialog("Enter adress");
+		    	String email = JOptionPane.showInputDialog("Enter e-mail");
+		    	String phone = JOptionPane.showInputDialog("Enter phone");
+		    	GenderType gndr = askGender();
+		    	
+		    	Employee e = new Secretary(name, age, generateContact(adr, email, phone), gndr, Profession.SECRETARY, 2017, 25000, 1000, 1, true, 100);
+		    	hireEmployee(e);
+		    	break;
+		    }
+		    case "Technician" : {
+		    	String name = JOptionPane.showInputDialog("Enter name");
+		    	String stringAge = JOptionPane.showInputDialog("Enter age");
+		    	int age = Integer.parseInt(stringAge);
+		    	String adr = JOptionPane.showInputDialog("Enter adress");
+		    	String email = JOptionPane.showInputDialog("Enter e-mail");
+		    	String phone = JOptionPane.showInputDialog("Enter phone");
+		    	GenderType gndr = askGender();
+		    	
+		    	Employee e = new Technician(name, age, generateContact(adr, email, phone), gndr, Profession.TECHNICIAN, 2017, 25000, 1000, 1, true, 100, 3);
+		    	hireEmployee(e);
+		    	break;
+		    }
+		    case "Programmer" : {
+		    	String name = JOptionPane.showInputDialog("Enter name");
+		    	String stringAge = JOptionPane.showInputDialog("Enter age");
+		    	int age = Integer.parseInt(stringAge);
+		    	String adr = JOptionPane.showInputDialog("Enter adress");
+		    	String email = JOptionPane.showInputDialog("Enter e-mail");
+		    	String phone = JOptionPane.showInputDialog("Enter phone");
+		    	GenderType gndr = askGender();
+		    	
+		    	Employee e = new Programmer(name, age, generateContact(adr, email, phone), gndr, Profession.PROGRAMMER, 2017, 25000, 1000, 1, true, 100, 3);
+		    	hireEmployee(e);
+		    	break;
+		    }
+		    case "Manager" : {
+		    	String name = JOptionPane.showInputDialog("Enter name");
+		    	String stringAge = JOptionPane.showInputDialog("Enter age");
+		    	int age = Integer.parseInt(stringAge);
+		    	String adr = JOptionPane.showInputDialog("Enter adress");
+		    	String email = JOptionPane.showInputDialog("Enter e-mail");
+		    	String phone = JOptionPane.showInputDialog("Enter phone");
+		    	GenderType gndr = askGender();
+		    	
+		    	Employee e = new Manager(name, age, generateContact(adr, email, phone), gndr, Profession.MANAGER, 2017, 25000, 1000, 1, true, 100, 3);
+		    	hireEmployee(e);
+		    	break;
+		    }
+		    default :
+		    	break;
+		    }
+	}
+	
+
+
+	//Testing
+	
+		
 //		System.out.println("Secretary number of calls: " + s1.getNTelephoneCalls());
 //		System.out.println("absent days: " + s1.getAbsentDays());
 //		s1.calculateBonus();
@@ -352,13 +303,6 @@ public class Ui {
 //		System.out.println("Manager's bonus: " + m1.getBonus());
 
 
-	}
+	
 	
 }
-
-
-
-
-
-
-

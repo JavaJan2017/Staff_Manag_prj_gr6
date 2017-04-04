@@ -41,6 +41,7 @@ abstract public class Employee {
 		//Class methods
 		abstract public void calculateBonus();
 		
+				
 		public void callInAbsence(int days) {
 			absentDays += days;
 		}
