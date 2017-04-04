@@ -200,26 +200,7 @@ double max = empList.get(0).getSalary();
 		}
 		return max;
 	}
-	public static void calculateSalary() {
-		double newSalary = 0;
-		for(Employee e : empList) {
-			if((e.yearsInCompany() > 2 )) {
-				newSalary = e.getSalary() * 1.10 ;
-				e.setSalary(newSalary);
-			}
-			else if ((e.yearsInCompany() > 5)) {
-				newSalary = e.getSalary() * 1.25;
-				e.setSalary(newSalary);
-			}
-			else if ((e.yearsInCompany() > 10)) {
-				newSalary = e.getSalary() * 1.35 ;
-				e.setSalary(newSalary);
-			}
-			else
-				newSalary = e.getSalary();
-			e.setSalary(newSalary);
-		}
-	}
+	
 	
 	public static void calculateAllBonus() {
 		for(Employee e : empList) {

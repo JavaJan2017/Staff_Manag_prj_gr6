@@ -31,18 +31,21 @@ public class StaffManagement {
 		e.setInCompany(false);
 	}
 	
-	public static void updateEmployee(Employee e, String name, int age, Contact contact, GenderType gender, Profession profession, double salary,
-			double bonus, int absentDays) {
-		
+//	public static void updateEmployee(Employee e, String name, int age, Contact contact, GenderType gender, Profession profession, double salary,
+//			double bonus, int absentDays) {
+//		
+//		e.setName(name);
+//		e.setAge(age);
+//		//e.contact = contact;
+//		e.setGender(gender);
+//		e.setProfession(profession);
+//		e.setSalary(salary);
+//		e.setBonus(bonus);
+//		e.setAbsentDays(absentDays);
+//		
+//	}
+	
+	public static void updateEmployee(Employee e, String name) {
 		e.setName(name);
-		e.setAge(age);
-		//e.contact = contact;
-		e.setGender(gender);
-		e.setProfession(profession);
-		e.setSalary(salary);
-		e.setBonus(bonus);
-		e.setAbsentDays(absentDays);
-		
 	}
-
 }

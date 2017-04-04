@@ -94,7 +94,70 @@ public class Ui {
 		return c;
 	}
 	
+	public static String askAction() {
+		
+		final String[] action = { "Add Employee", "Update Employee", "Remove Employee", "Show Employee", "Calculate Salary and Bonus", "Get Statistics" };
+		JFrame frame = new JFrame("Staff Management v 1.2");
+		    String selectedAction = (String) JOptionPane.showInputDialog(frame, 
+		        "Select Action",
+		        "Action type",
+		        JOptionPane.QUESTION_MESSAGE, 
+		        null, 
+		        action, 
+		        action[0]);
+
+		    // selectedProfession will be null if the user clicks Cancel
+		    return selectedAction;
+		
+	}
 	
+	public static void getUserInput() {
+		String selectedAction = askAction();
+
+		switch(selectedAction) {
+
+		case  "Add Employee" : {
+			enterNewEmployees();
+			break;
+		}
+		case "Update Employee" : {
+			String stringID = JOptionPane.showInputDialog("Enter Employee ID");
+			int id = Integer.parseInt(stringID);
+			Employee e = Main.findEmployeeByID(id);
+			String name = JOptionPane.showInputDialog("Enter new name");
+			StaffManagement.updateEmployee(e, name);
+			break;
+
+		}
+		case "Remove Employee" : {
+			String stringID = JOptionPane.showInputDialog("Enter Employee ID");
+			int id = Integer.parseInt(stringID);
+			removeEmployee(id);
+			break;
+		}
+		case "Show Employee" : {
+			String stringID = JOptionPane.showInputDialog("Enter Employee ID");
+			int id = Integer.parseInt(stringID);
+			Employee e = Main.findEmployeeByID(id);
+			printHeader();
+			printEmployee(e);
+			break;
+		}
+		case "Calculate Salary and Bonus" : {
+			String stringID = JOptionPane.showInputDialog("Enter Employee ID");
+			int id = Integer.parseInt(stringID);
+			Employee e = Main.findEmployeeByID(id);
+			e.calculateSalary();
+			e.calculateBonus();
+			printHeader();
+			printEmployee(e);
+			break;
+			
+		}
+
+		}
+	}
+
 	public static String askProfession() {
 		
 		final String[] professions = { "Secretary", "Technician", "Programmer", "Manager" };
@@ -110,6 +173,11 @@ public class Ui {
 		    // selectedProfession will be null if the user clicks Cancel
 		    return selectedProfession;
 		
+	}
+	
+	public static void removeEmployee(int id) {
+		Employee e = Main.findEmployeeByID(id);
+		StaffManagement.fireEmployee(e);
 	}
 	
 	public static GenderType askGender() {

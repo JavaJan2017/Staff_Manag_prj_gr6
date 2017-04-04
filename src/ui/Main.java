@@ -34,7 +34,7 @@ public class Main {
 	    Contact contactM1 = new Contact("Wall Str.1", "michael@a.com", "0784324581");    
 
 	    Secretary s1 = new Secretary("Siri", 25, contactS1, GenderType.FEMALE, Profession.SECRETARY, 2016, 2000, 100, 1, true, 100);
-	    Secretary s2 = new Secretary("Susan", 25, contactS2, GenderType.MALE, Profession.SECRETARY, 2016, 2587, 320, 1, true, 100);
+	    Secretary s2 = new Secretary("Susan", 25, contactS2, GenderType.FEMALE, Profession.SECRETARY, 2016, 2587, 320, 1, true, 100);
 	    Technician t1 = new Technician("Tom", 25, contactT1, GenderType.MALE, Profession.TECHNICIAN, 2013, 5000, 300, 1, true, 50, 10);
 	    Programmer p1 = new Programmer("Peter", 30, contactP1, GenderType.MALE, Profession.PROGRAMMER, 2011, 1000, 500, 1, true, 500, 77);
 	    Programmer p2 = new Programmer("Patricia", 30, contactP2, GenderType.FEMALE, Profession.PROGRAMMER, 2011, 2000, 50, 1, true, 400, 64);		
@@ -54,15 +54,15 @@ public static void testData() {
 		
 		initiateEmployeeList();
 		
-		String enterNew = JOptionPane.showInputDialog("Do you want to enter a new employee?");
-		while(enterNew.equals("yes")) {
-			enterNewEmployees();
-			enterNew = JOptionPane.showInputDialog("Do you want to enter a new employee?");
-		}
+//		String enterNew = JOptionPane.showInputDialog("Do you want to enter a new employee?");
+//		while(enterNew.equals("yes")) {
+//			enterNewEmployees();
+//			enterNew = JOptionPane.showInputDialog("Do you want to enter a new employee?");
+//		}
+//		
 		
 	
-		printAllEmployees();
-		Statistics.calculateSalary();
+		//Statistics.calculateSalary();
 		Statistics.calculateAllBonus();
 		printAllEmployees();
 		Statistics.calculateFtoMProfession();
@@ -81,17 +81,16 @@ public static void testData() {
 	public static void main(String[] args) {
 			
 				testData();
-				StaffManagement.viewEmployee(findEmployeeByID(4));
+				getUserInput();
+				printAllEmployees();
 				
 				Secretary siri = (Secretary)findEmployeeByID(1);
 				Technician tom = (Technician)findEmployeeByID(3); 
 				Programmer peter = (Programmer)findEmployeeByID(4);
-				Manager michael = (Manager)findEmployeeByID(6);
-				
+				Manager michael = (Manager)findEmployeeByID(6);				
 				System.out.println("\n");
 		
-				//Testing Employee methods
-				
+				//Testing Employee methods				
 				System.out.println("\n");
 				StaffManagement.viewEmployee(siri);
 				System.out.println("");
@@ -114,9 +113,6 @@ public static void testData() {
 				System.out.println("Technician crashes server");
 				tom.crashServer();
 				tom.printInfo();
-
-				
-				
 				
 
 				System.out.println("\n");
@@ -135,23 +131,23 @@ public static void testData() {
 				peter.printInfo();
 
 				
-				System.out.println("\n");
-				StaffManagement.viewEmployee(michael);
-				System.out.println("");
-				michael.printInfo();
-				System.out.println("");				
-				System.out.println("Manager increases production a little");
-				michael.increaseProduction();
-				michael.printInfo();
-				System.out.println("");
-				System.out.println("Manager receives some complaints");
-				michael.receiveComplaints();
-				michael.receiveComplaints();
-				michael.receiveComplaints();
-				michael.receiveComplaints();
-				michael.printInfo();
-				
-				System.exit(0);
+//				System.out.println("\n");
+//				StaffManagement.viewEmployee(michael);
+//				System.out.println("");
+//				michael.printInfo();
+//				System.out.println("");				
+//				System.out.println("Manager increases production a little");
+//				michael.increaseProduction();
+//				michael.printInfo();
+//				System.out.println("");
+//				System.out.println("Manager receives some complaints");
+//				michael.receiveComplaints();
+//				michael.receiveComplaints();
+//				michael.receiveComplaints();
+//				michael.receiveComplaints();
+//				michael.printInfo();
+//				
+//				System.exit(0);
 	
 				
 

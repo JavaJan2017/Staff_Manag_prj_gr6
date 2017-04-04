@@ -1,5 +1,7 @@
 package models;
 
+import static ui.Main.empList;
+
 import java.util.Date;
 
 import utilities.*;
@@ -40,6 +42,27 @@ abstract public class Employee {
 		
 		//Class methods
 		abstract public double calculateBonus();
+		
+		public  void calculateSalary() {
+			double newSalary = 0;
+			for(Employee e : empList) {
+				if((e.yearsInCompany() > 2 )) {
+					newSalary = e.getSalary() * 1.10 ;
+					e.setSalary(newSalary);
+				}
+				else if ((e.yearsInCompany() > 5)) {
+					newSalary = e.getSalary() * 1.25;
+					e.setSalary(newSalary);
+				}
+				else if ((e.yearsInCompany() > 10)) {
+					newSalary = e.getSalary() * 1.35 ;
+					e.setSalary(newSalary);
+				}
+				else
+					newSalary = e.getSalary();
+				e.setSalary(newSalary);
+			}
+		}
 		
 				
 		public void callInAbsence(int days) {
