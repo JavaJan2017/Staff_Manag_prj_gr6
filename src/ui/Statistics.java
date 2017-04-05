@@ -7,6 +7,7 @@ import utilities.GenderType;
 public class Statistics {
 	
 	static double[] avgSalaryProfession = new double[4];
+	static double[] ratioFtoMProfession = new double[4];
 
 	//Calculate Lowest Salary
 	public static double calcMinSalary() {
@@ -48,7 +49,7 @@ double max = empList.get(0).getSalary();
 	}
 	
 	//Calculate Average Salary by Profession
-	public static void calcAvgSalaryProfessions() {
+	public static double[] calcAvgSalaryProfessions() {
 		double totalSalarySecretary = 0;
 		double avgSalarySecretary = 0;
 		int nSecretaries = 0;
@@ -99,10 +100,7 @@ double max = empList.get(0).getSalary();
 		avgSalaryProfession[1] = avgSalaryTechnician;
 		avgSalaryProfession[2] = avgSalaryProgrammer;
 		avgSalaryProfession[3] = avgSalaryManager;
-		System.out.println("Average salary for Secretary is €" + avgSalarySecretary);
-		System.out.println("Average Salary for Technician is €" + avgSalaryTechnician);
-		System.out.println("Average salary for Prgrammer is €" + avgSalaryProgrammer);
-		System.out.println("Average salary for Manager is €" + avgSalaryManager);		
+		return avgSalaryProfession;
 	}
 		
 		//Calculate Female-to-Male ratio
@@ -124,7 +122,7 @@ double max = empList.get(0).getSalary();
 		return ratioFtoM;
 	}
 
-	public static void calculateFtoMProfession(){
+	public static double []  calculateFtoMProfession(){
 
 		int malesSecretary  = 0;
 		int malesTechnician  = 0;
@@ -185,11 +183,18 @@ double max = empList.get(0).getSalary();
 				break;			
 			}			
 		}
-
+		
+		ratioFtoMProfession[0] = ratioFtoMSecretary;
+		ratioFtoMProfession[1] = ratioFtoMTechnician;
+		ratioFtoMProfession[2] = ratioFtoMProgrammer;
+		ratioFtoMProfession[3] = ratioFtoMManager;
+				
 		System.out.println("The percentage of women among Secretaries is: " + (int)ratioFtoMSecretary + "%");
 		System.out.println("The percentage of women among Technicians is: " + (int)ratioFtoMTechnician + "%");
 		System.out.println("The percentage of women among Programmers is: " + (int)ratioFtoMProgrammer + "%");
 		System.out.println("The percentage of women among Managers is: " + (int)ratioFtoMManager +"%");
+		
+		return ratioFtoMProfession;
 
 	}
 	
