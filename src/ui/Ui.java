@@ -138,7 +138,7 @@ public class Ui {
 				"Information about employee ID " + id + "\nName: " + e.getName() + " \nAge: " + e.getAge()
 						+ "   \nEmployee is a " + toString(e.getGender()) + "\nProfession: "
 						+ toString(e.getProfession()) + "\nAdress: " + e.getContact().getAdress() + "\nE-mail: "
-						+ e.getContact().getEmail() + "\nPhone: " + e.getContact().getPhone() + "\nStart year: "
+						+ e.getContact().getEmail() + "\nPhone: " + e.getContact().getPhone() + "\nSalary: € " + e.getSalary()+"\nStart year: "
 						+ e.getStartDate(),
 				"Staff manager version 1.2", JOptionPane.INFORMATION_MESSAGE);
 		}
