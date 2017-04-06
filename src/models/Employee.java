@@ -45,27 +45,24 @@ abstract public class Employee {
 		
 		public  double calculateSalary() {
 			double newSalary = 0;
-		
-				if (yearsInCompany() < 2 ) {
-					newSalary = getSalary();
-				}
-				else if((yearsInCompany() >= 2 && yearsInCompany() < 5 )) {
-					newSalary = getSalary() * 1.10 ;
-					System.out.println("+2 years " + "salary: " + newSalary);
-					}
-				
-				else if ((yearsInCompany() >= 5 && yearsInCompany() < 10)) {
-					newSalary = getSalary() * 1.25;
-					System.out.println("+5 years " + "salary: " + newSalary);
-				}
-				else {
-					newSalary = getSalary() * 1.35 ;
-					System.out.println("+10 years " + "salary: " + newSalary);
-				}
-			
-				return newSalary;
+
+			if (yearsInCompany() < 2 ) {
+				newSalary = getSalary();
 			}
-			
+			else if((yearsInCompany() >= 2 && yearsInCompany() < 5 )) {
+				newSalary = getSalary() * 1.10 ;
+			}
+
+			else if ((yearsInCompany() >= 5 && yearsInCompany() < 10)) {
+				newSalary = getSalary() * 1.25;
+			}
+			else {
+				newSalary = getSalary() * 1.35 ;
+			}
+
+			return newSalary;
+		}
+
 					
 		public void callInAbsence(int days) {
 			absentDays += days;

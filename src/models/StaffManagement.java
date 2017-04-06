@@ -72,10 +72,12 @@ public class StaffManagement {
 	//
 	// }
 
-	public static void updateEmployee(Employee e, String name, Contact contact, GenderType gender, int startYear) {
+	public static void updateEmployee(Employee e, String name, Contact contact, GenderType gender,double salary, int startYear) {
 		e.setName(name);
 		e.setContact(contact);
 		e.setGender(gender);
+		e.setSalary(salary);
 		e.setStartDate(startYear);
+		
 	}
 }

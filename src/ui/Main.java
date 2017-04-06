@@ -14,12 +14,17 @@ public class Main {
 	public static ArrayList<Employee> empList = new ArrayList<>();
 	
 	public static Employee findEmployeeByID(int id) {
-		for (int i = 0; i < empList.size(); i++) {
-			if(empList.get(i).getId() == id) {
-				return empList.get(i);
+		if(id <= empList.size()) {
+
+
+			for (int i = 0; i < empList.size(); i++) {
+				if(empList.get(i).getId() == id) {
+					return empList.get(i);
+				}
+
 			}
-			
 		}
+		System.out.println("Employee does not exist");
 		return null;
 	}
 
@@ -60,7 +65,7 @@ public class Main {
 		Secretary siri = (Secretary)findEmployeeByID(1);
 		Technician tom = (Technician)findEmployeeByID(3); 
 		Programmer peter = (Programmer)findEmployeeByID(4);
-		Manager michael = (Manager)findEmployeeByID(6);				
+		Manager michael = (Manager)findEmployeeByID(7);				
 		System.out.println("\n");
 
 		//Testing Employee methods				
