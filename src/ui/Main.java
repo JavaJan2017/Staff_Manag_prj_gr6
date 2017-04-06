@@ -60,7 +60,7 @@ public class Main {
 		Secretary siri = (Secretary)findEmployeeByID(1);
 		Technician tom = (Technician)findEmployeeByID(3); 
 		Programmer peter = (Programmer)findEmployeeByID(4);
-		Manager michael = (Manager)findEmployeeByID(6);				
+		Manager michael = (Manager)findEmployeeByID(7);				
 		System.out.println("\n");
 
 		//Testing Employee methods				
