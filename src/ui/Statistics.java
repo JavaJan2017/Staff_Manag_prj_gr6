@@ -11,22 +11,22 @@ public class Statistics {
 
 	//Calculate Lowest Salary
 	public static double calcMinSalary() {
-		double min = empList.get(0).getSalary();
+		double min = empList.get(0).calculateSalary();
 		
 		for(Employee e : empList) {
-			if(e.getSalary() < min)
-				min = e.getSalary();
+			if(e.calculateSalary() < min)
+				min = e.calculateSalary();
 		}
 		return min;
 	}
 
 	//Calculate Highest Salary
 	public static double calcMaxSalary() {
-double max = empList.get(0).getSalary();
+double max = empList.get(0).calculateSalary();
 		
 		for(Employee e : empList) {
-			if(e.getSalary() > max)
-				max = e.getSalary();
+			if(e.calculateSalary() > max)
+				max = e.calculateSalary();
 		}
 		return max;
 	}
@@ -40,7 +40,7 @@ double max = empList.get(0).getSalary();
 		double totalSalary = 0;
 
 		for(Employee e : empList){
-			totalSalary += e.getSalary() + e.getBonus();
+			totalSalary += e.calculateSalary() + e.getBonus();
 
 			averageSalary = totalSalary/empList.size();
 
@@ -71,25 +71,25 @@ double max = empList.get(0).getSalary();
 			switch (e.getProfession()) {
 			case SECRETARY: 
 				nSecretaries++;
-				totalSalarySecretary += e.getSalary();
+				totalSalarySecretary += e.calculateSalary();
 				avgSalarySecretary = totalSalarySecretary / nSecretaries;				
 				break;
 				
 			case TECHNICIAN: 
 				nTechnicians++;
-				totalSalaryTechnician += e.getSalary();
+				totalSalaryTechnician += e.calculateSalary();
 				avgSalaryTechnician = totalSalaryTechnician / nTechnicians;				
 				break;
 				
 			case PROGRAMMER: 
 				nProgrammers++;
-				totalSalaryProgrammer += e.getSalary();
+				totalSalaryProgrammer += e.calculateSalary();
 				avgSalaryProgrammer = totalSalaryProgrammer / nProgrammers;
 				break;
 				
 			case MANAGER: 
 				nManagers++;
-				totalSalaryManager += e.getSalary();
+				totalSalaryManager += e.calculateSalary();
 				avgSalaryManager = totalSalaryManager / nManagers;
 				break;
 			default:

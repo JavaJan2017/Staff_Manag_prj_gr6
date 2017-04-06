@@ -14,12 +14,17 @@ public class Main {
 	public static ArrayList<Employee> empList = new ArrayList<>();
 	
 	public static Employee findEmployeeByID(int id) {
-		for (int i = 0; i < empList.size(); i++) {
-			if(empList.get(i).getId() == id) {
-				return empList.get(i);
+		if(id <= empList.size()) {
+
+
+			for (int i = 0; i < empList.size(); i++) {
+				if(empList.get(i).getId() == id) {
+					return empList.get(i);
+				}
+
 			}
-			
 		}
+		System.out.println("Employee does not exist");
 		return null;
 	}
 

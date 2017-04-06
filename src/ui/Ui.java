@@ -64,11 +64,11 @@ public class Ui {
 
 	public static void printHeader() {
 		System.out.println(
-				"------------------------------------------------------------------------------------------------");
+				"------------------------------------------------------------------------------------------------------------------");
 		System.out.println(
-				"ID   Name         Age   Gender  Profession   Adress        e-mail          Phone      Startyear");
+				"ID   Name         Age   Gender  Profession   Adress        e-mail          Phone      Salary    Bonus    Startyear");
 		System.out.println(
-				"------------------------------------------------------------------------------------------------");
+				"-------------------------------------------------------------------------------------------------------------------");
 	}
 
 	public static void printEmployee(Employee e) {
@@ -76,7 +76,7 @@ public class Ui {
 				+ fixLengthString(e.getAge(), 3) + "   " + toString(e.getGender()) + "  " + toString(e.getProfession())
 				+ "   " + fixLengthString(e.getContact().getAdress(), 13) + " "
 				+ fixLengthString(e.getContact().getEmail(), 15) + " " + fixLengthString(e.getContact().getPhone(), 9)
-				+ "  " + fixLengthString(e.getStartDate(), 5));
+				+ "  " +fixLengthString(e.calculateSalary(),8) + "  " + fixLengthString(e.calculateBonus(),7) + "  " + fixLengthString(e.getStartDate(), 5));
 		
 	}
 
@@ -100,7 +100,7 @@ public class Ui {
 		String adr = JOptionPane.showInputDialog("Enter new adress");
 		
 		String email = "";
-		//Check that user inputs correct e-mail format
+				//Check that user inputs correct e-mail format
 		boolean emailCorrectFormat = false;
 		while(!emailCorrectFormat) {
 
@@ -118,19 +118,21 @@ public class Ui {
 		
 		String phone = JOptionPane.showInputDialog("Enter new phone");
 		GenderType gndr = askGender();
+		String stringSalary = JOptionPane.showInputDialog("Enter salary");
+		double salary = Double.parseDouble(stringSalary);
 		String stringStartYear = JOptionPane.showInputDialog("Enter new start year");
 		int startYear = Integer.parseInt(stringStartYear);
-		StaffManagement.updateEmployee(e, name, generateContact(adr, email, phone), gndr, startYear);
+		StaffManagement.updateEmployee(e, name, generateContact(adr, email, phone), gndr,salary, startYear);
 	}
 	
 	public static void showEmployee() {
 		String stringID = JOptionPane.showInputDialog("Enter Employee ID");
 		int id = Integer.parseInt(stringID);
-		Employee e = Main.findEmployeeByID(id);
-
-		printHeader();
-		printEmployee(e);
-
+		if (id <= Main.empList.size()) {
+			Employee e = Main.findEmployeeByID(id);
+			printHeader();
+			printEmployee(e);
+		
 		JFrame frame = new JFrame("Staff Management v 1.2");
 		JOptionPane.showMessageDialog(frame,
 				"Information about employee ID " + id + "\nName: " + e.getName() + " \nAge: " + e.getAge()
@@ -139,6 +141,9 @@ public class Ui {
 						+ e.getContact().getEmail() + "\nPhone: " + e.getContact().getPhone() + "\nStart year: "
 						+ e.getStartDate(),
 				"Staff manager version 1.2", JOptionPane.INFORMATION_MESSAGE);
+		}
+		else
+				System.out.println("Employee does not exist");
 	}
 	
 	public static void showSalaryStatistics() {
@@ -349,33 +354,35 @@ public class Ui {
 		
 		String phone = JOptionPane.showInputDialog("Enter phone");
 		GenderType gndr = askGender();
+		String stringSalary = JOptionPane.showInputDialog("Enter Salary");
+		double salary = Double.parseDouble(stringSalary);
 		
 		switch (selectedProfession) {
 		case "Secretary": {
 			
 			Employee e = new Secretary(name, age, generateContact(adr, email, phone), gndr, Profession.SECRETARY, 2017,
-					25000, 1000, 1, true, 100);
+					salary, 1000, 1, true, 100);
 			StaffManagement.hireEmployee(e);
 			break;
 		}
 		case "Technician": {
 			
 			Employee e = new Technician(name, age, generateContact(adr, email, phone), gndr, Profession.TECHNICIAN,
-					2017, 25000, 1000, 1, true, 100, 3);
+					2017, salary, 1000, 1, true, 100, 3);
 			StaffManagement.hireEmployee(e);
 			break;
 		}
 		case "Programmer": {
 			
 			Employee e = new Programmer(name, age, generateContact(adr, email, phone), gndr, Profession.PROGRAMMER,
-					2017, 25000, 1000, 1, true, 100, 3);
+					2017, salary, 1000, 1, true, 100, 3);
 			StaffManagement.hireEmployee(e);
 			break;
 		}
 		case "Manager": {
 			
 			Employee e = new Manager(name, age, generateContact(adr, email, phone), gndr, Profession.MANAGER, 2017,
-					25000, 1000, 1, true, 100, 3);
+					salary, 1000, 1, true, 100, 3);
 			StaffManagement.hireEmployee(e);
 			break;
 		}
